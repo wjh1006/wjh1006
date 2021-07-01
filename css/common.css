@@ -5,3 +5,167 @@
 ul li{
     list-style: none;
 }
+body{
+    user-select: none;
+}
+a{
+    text-decoration: none;
+}
+.nav{
+    width:1510px;
+    height: 200px;
+
+    margin: 0 auto;
+    box-shadow:0px 6px 12px #999;
+}
+.nav1{
+    width: 400px;
+    height: 200px;
+    float: left;
+}
+.nav2{
+    width: 1100px;
+    height: 200px;
+    float: left;
+}
+.nav img{
+    margin-top: 30px;
+    margin-left: 20px;
+}
+.nav li{
+    float: left;
+    margin-left: 60px;
+    font-size: 18px;
+    margin-top: 13px;
+    font-weight: bold;
+}
+.nav li:hover{
+    cursor: pointer;
+    color: red;
+}
+.nav2 input{
+    width: 400px;
+    height: 40px;
+    border-radius: 5px;
+    margin-top: 80px;
+    margin-left: 400px;
+}
+.nav2 button{
+    position: relative;
+    top: 1.5px;
+    right: 4px;
+    width: 60px;
+    height: 40px;
+    font-size: 16px;
+}
+.nav3 {
+    width: 1510px;
+    height: 80px;
+    margin: 0 auto;
+}
+.nav3 li{
+    margin-left: 154px;
+    line-height: 80px;
+    font-size: 20px;
+    float: left;
+}
+.nav3 li:hover{
+    cursor: pointer;
+}
+
+.div1{
+    width: 1200px;
+    height: 500px;
+    border: 1px solid#000;
+    margin: 0 auto;
+}
+
+.denglu{
+    width: 1210px;
+    height: 510px;
+    margin-left: 155px;
+    position: absolute;
+    margin-top: -60px;
+    z-index: 1000;
+    background-color: #fff;
+    display: none;
+    
+}
+.zhuce{
+    width: 1210px;
+    height: 510px;
+    margin-left: 155px;
+    z-index: 1000;
+    background-color: #fff;
+    margin-top: -60px;
+    position: absolute;
+    /* display: none; */
+}
+.denglu-1{
+    width:500px;
+    height: 300px;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+.denglu-2{
+    width:500px;
+    height: 300px;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+.denglu-1 input{
+    margin-top: 43px;
+    margin-left: 96px;
+}
+.denglu-2 input{
+    margin-top: 43px;
+    margin-left: 96px;
+}
+.denglu-1 button{
+    margin-top: 43px;
+    margin-left: 96px;
+    background-color:aqua;
+    color:black;
+}
+.denglu-2 button{
+    margin-top: 43px;
+    margin-left: 96px;
+    background-color:aqua;
+    color:black;
+}
+#to_top{width:30px;
+     height:40px; 
+     padding:20px; 
+     font:14px/20px arial;
+      text-align:center; 
+       background:#06c; 
+       position:absolute; 
+       cursor:pointer;
+        color:#fff
+    }
+
+.list{
+    width: 1200px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+.item{
+    width: 280px;
+    height: 240px;
+    text-align: center;
+    border: 1px solid #000;
+    margin-top: 15px;
+    border-radius: 5px;
+}
+.item img{
+    width: 260px;
+    height: 180px;
+}
+
+
+
+
+
+

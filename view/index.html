@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <script src="../js/request.js"></script>
+</head>
+
+
+
+<body>
+  <div class="nav" id="nav">
+    <div class="nav1" id="nav1">
+      <img src="../assets/images/logo.png">
+      <ul>
+        <li id="li1">首页</li>
+        <li id="li2">登录</li>
+        <li id="li3">注册</li>
+      </ul>
+    </div>
+    <div class="nav2" id="nav2">
+      <input type="" name="" id="" value="" placeholder="请输入想要搜索的商品" />
+      <button>搜索</button>
+    </div>
+  </div>
+  <div class="nav3" id="nav3">
+    <ul>
+      <li>咖啡</li>
+      <li>饮食</li>
+      <li>正餐</li>
+      <li>男装</li>
+      <li>女装</li>
+      <li>眼睛</li>
+      <li>鞋靴</li>
+    </ul>
+  </div>
+  <div class="denglu">
+    <div class="denglu-1">
+      <input type="text" style="width:300px;height:40px" placeholder="请输入账号">
+      <input type="text" style="width:300px;height:40px" placeholder="请输入密码">
+      <br>
+      <button style="width:300px;height:40px">登录</button>
+    </div>
+  </div>
+  <div class="zhuce">
+    <div class="denglu-2">
+      <input type="text" style="width:300px;height:40px" placeholder="请输入账号">
+      <input type="text" style="width:300px;height:40px" placeholder="请输入密码">
+      <br>
+      <button style="width:300px;height:40px">注册</button>
+    </div>
+  </div>
+  <div class="div1">
+    <div class="layui-carousel " id="text">
+      <div carousel-item>
+        <div><img src="../assets/images/a.jpg"></div>
+        <!-- <div><img src="../assets/images/b.jpg"></div>
+        <div><img src="../assets/images/c.jpg"></div>
+        <div><img src="../assets/images/d.jpg"></div>
+        <div><img src="../assets/images/e.jpg"></div> -->
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <div class="list">
+    <!-- <div class="item">
+  <div class="img">
+    <img src="../assets/images/a.jpg alt=''">
+  </div>
+  <div class="title">
+    <span>咖啡</span>
+  </div>
+  <div class="info">
+    <span class="info_price">价格</span>
+    <span class="info_control">一起拼</span>
+  </div>
+</div> -->
+  </div>
+
+  <body style="height:1000px;">
+    <div id="to_top">返回顶部</div>
+  </body>
+
+
+  <script>
+
+    var lis = document.querySelectorAll(" #nav ul li");
+    var denglu = document.querySelector('.denglu');
+    var zhuce = document.querySelector('.zhuce');
+    denglu.style.display = 'none';
+    zhuce.style.display = 'none';
+    li2.onmousedown = function () {
+      denglu.style.display = 'block';
+      zhuce.style.display = 'none';
+    }
+    li3.onmousedown = function () {
+      zhuce.style.display = 'block';
+      denglu.style.display = 'none';
+    }
+    li1.onmousedown = function () {
+      zhuce.style.display = 'none';
+      denglu.style.display = 'none';
+    }
+
+
+    var lunbo = document.querySelectorAll('#text div img');
+
+
+
+    // 返回顶部
+    window.onload = function () {
+      var Top = document.getElementById("to_top");
+      var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+      var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+      Top.style.left = screenw - Top.offsetWidth + "px";
+      Top.style.top = screenh - Top.offsetHeight + "px";
+      window.onscroll = function () {
+        var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+        Top.style.top = screenh - Top.offsetHeight + scrolltop + "px";
+      }
+      Top.onclick = function () {
+        document.documentElement.scrollTop = document.body.scrollTop = 0;
+      }
+    }
+    // 返回顶部结束
+
+
+
+    // 获取商品列表
+    function swipter() {
+
+    }
+    function getShopList() {
+
+
+      REQUEST.get('/goodlist', { params: { page: 1 } }, function(data) {
+          var list = document.querySelector('.list');
+          console.log(data);
+          var html = '';
+          for (var i = 0; i < data.length; i++) {
+            var item = data[i];
+            html = html + `
+             <div class="item">
+              <div class="img">
+                <img src="${item.img_list_url}"alt="">
+                </div>
+                <div class="title">
+                  <span>${item.title}</span>
+                  </div>
+                  <div class="info">
+                    <span class="info_price">${item.price}</span>
+              ${item.mack}
+              </div>
+              </div>`
+          }
+          list.innerHTML = html;
+        
+      })
+    }
+
+
+    getShopList()
+
+  </script>
+
+</html>
