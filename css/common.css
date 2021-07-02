@@ -73,12 +73,12 @@ a{
     cursor: pointer;
 }
 
-.div1{
+/* .div1{
     width: 1200px;
     height: 500px;
     border: 1px solid#000;
     margin: 0 auto;
-}
+} */
 
 .denglu{
     width: 1210px;
@@ -89,6 +89,7 @@ a{
     z-index: 1000;
     background-color: #fff;
     display: none;
+    border-radius: 10px;
     
 }
 .zhuce{
@@ -100,6 +101,7 @@ a{
     margin-top: -60px;
     position: absolute;
     /* display: none; */
+    border-radius: 10px;
 }
 .denglu-1{
     width:500px;
@@ -133,6 +135,7 @@ a{
     background-color:aqua;
     color:black;
 }
+
 #to_top{width:30px;
      height:40px; 
      padding:20px; 
@@ -163,6 +166,9 @@ a{
     width: 260px;
     height: 180px;
 }
+
+
+
 
 
 

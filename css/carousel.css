@@ -1,0 +1,104 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.carousel{
+    width: 1300px;
+    margin: 0 auto;
+    /* outline: 1px solid red; */
+    height: 500px;
+    overflow: hidden;
+    position: relative;
+}
+.carousel ul li{
+    float: left;
+    width: 1300px;
+    height: 500px;
+    list-style: none;
+}
+
+.carousel img{
+    width: 1300px;
+    height: 500px;
+    border-radius: 20px;
+}
+
+.carousel ul {
+    width: 8400px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.carousel ul::after {
+    clear: both;
+    display: block;
+    content: "";
+}
+
+.buttonleft {
+    width: 50px;
+    height: 50px;
+    background-image: url("../assets/images/icons.png");
+    background-size: 400% 100%;
+    background-position: 200% 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.carousel:hover .buttonleft {
+    background-position: 400% 0;
+}
+
+.carousel:hover .buttonright {
+    background-position: 300% 0;
+}
+
+.buttonright {
+    width: 50px;
+    height: 50px;
+    background-image: url("../assets/images/icons.png");;
+    background-size: 400% 100%;
+    background-position: 100% 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.circle {
+    width: 200px;
+    height: 21px;
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    margin: auto
+}
+
+.circle::after {
+    clear: both;
+    content: "";
+    display: block;
+}
+
+.circle li {
+    cursor: pointer;
+    display: inline-block;
+    width: 30px;
+    height: 5px;
+    background-color: silver;
+    margin: 0 3px;
+}
+
+.circle .current {
+    background-color: #fff;
+}

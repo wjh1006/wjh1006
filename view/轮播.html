@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .contain {
+            width: 100%;
+            height: 500px;
+        }
+
+        .contain>.view {
+            width: 400%;
+            height: 100%;
+        }
+
+        .contain .swiper-item {
+            width: 25%;
+            height: 100%;
+            float: left;
+        }
+
+        .swiper-item>img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .control {
+            width: 100%;
+            height: 50px;
+            max-height: 120px;
+            position: absolute;
+            top: 50%;
+            transform: translate(0, -50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+        }
+
+        .control>.prevent,
+        .next {
+            max-width: 120px;
+            max-height: 120px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            text-align: center;
+            line-height: 50px;
+
+        }
+
+        .point {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            bottom: 10px;
+            height: 50px;
+
+        }
+
+        .point>span {
+            max-height: 30px;
+            max-width: 30px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.3);
+
+        }
+
+        .active.point-item {
+            background-attachment: rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="swiper">
+        <div class="contain">
+            <div class="view">
+                <div class="swiper-item"><img src="../assets/images/a.jpg"></div>
+                <div class="swiper-item"><img src="../assets/images/b.jpg"></div>
+                <div class="swiper-item"><img src="../assets/images/bg.jpg"></div>
+            </div>
+            <div class="point">
+                <span class="point-item"></span>
+                <span class="point-item"></span>
+                <span class="point-item"></span>
+            </div>
+            <div class="control">
+                <div class="prevent"></div>
+                <div class="next"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+
+        function creatSwiper() {
+            var swiper = new swiper();
+            swiper.render();
+            return swiper
+        }
+        /**
+         * 
+         *   @param {Object} config
+         */
+        function Swiper(Config) {
+            config = config === undefined ?
+                {
+                    container: '.swiper',
+                    autoplay: false,
+                    point: false,
+                    data: []
+                } : config;
+            this.degault = consfig;
+        }
+
+        // 渲染dom函数
+        Swiper.prototype.rebder = function () {
+            var Swiper = document.querySelector(this.degault.container)
+            var contain = document.createElement('div');
+            contain.className = 'contain'
+            Swiper.appendChild(contain);
+            for (var i = 0; i < 3; i++) {
+                var div = document.createElement('div');
+                if (i === 0) {
+                    div.className = 'view';
+                    for(var j=0;j<this.default.data.length;j++){
+                        let swiperItem =document.createElement('div');
+                        swiperItem.className='swiper-item';
+                        let img =document.createElement('img');
+                        img.src=this.default.data[j];
+                        if(j===this.default.data.length+1){
+                            img.src=this.default.data[0]
+                        }
+                        img.src='';
+                        img.alt='';
+                        swiperItem.appendChild(img);
+                        div.appendChild(swiperItem);
+                    }
+                } else if (i === 1) {
+                    div.className = 'point';
+                } else {
+                    div.className = 'control';
+                }
+                contain.appendChild(div);
+            }
+        }
+
+        // 初始化设置样式的函数
+        Swiper.prototype.initStyle = function (dom,style) {
+            // this.cssStyle(dom, {
+
+            // })
+       
+        var contain = document.querySelector('domcontain')
+    this.cssStyle(contain, {
+        width: '100%',
+        height: '500px',
+        overflow: 'hidden',
+        position: 'relative',
+    })
+
+    var view = document.querySelector('.contain>.view');
+    this.cssStyle(view, {
+        width: '400%',
+        height: '100%',
+    })
+
+    var swiperItem = document.querySelector('.contain .swiper-item');
+    this.cssStyle(swiperItem, {
+        width: '25%',
+        height: '100%',
+        float: 'left',
+    })
+    var img = document.querySelector('.swiper-item>img');
+    this.cssStyle(img, {
+        width: '100%',
+        height: '100%',
+    })
+
+    var control = document.querySelector('.control');
+    this.cssStyle(control, {
+        width: "100%",
+        maxHeight: '120px',
+        height: '50px',
+        position: 'absolute',
+        top: '50%',
+        transform: "translate(0,-50%)",
+        display: "flex",
+        justifyContent: "space-between",
+        padding: "0px 10px",
+    })
+
+    var prent = document.querySelector('.control .prevent');
+    this.cssStyle(prent, {
+        maxWidth: ' 120px',
+        maxHeight: ' 120px',
+        width: ' 50px',
+        height: ' 50px',
+        borderRadius: ' 50%',
+        backgroundColor: 'rgba(0, 0, 0,0.3)',
+        color: '#fff',
+        textAlign: 'center',
+        lineHeight: '50px',
+    })
+    var next = document.querySelector('.control .next');
+    this.cssStyle(next, {
+        maxWidth: ' 120px',
+        maxHeight: ' 120px',
+        width: ' 50px',
+        height: ' 50px',
+        borderRadius: ' 50%',
+        backgroundColor: 'rgba(0, 0, 0,0.3)',
+        color: '#fff',
+        textAlign: 'center',
+        lineHeight: '50px',
+    })
+
+    var point = document.querySelector('.point')
+    this.cssStyle(point, {
+        width: '100%',
+        height: '50px',
+        display: 'flex',
+        justifyContent: 'center',
+        position: 'absolute',
+        bottom: '10px',
+    })
+
+    var pointItem = document.querySelector('.point>span');
+    this.cssStyle(pointItem,{
+        maxWidth: '30px',
+        maxHeight: '30px',
+        width: '30px',
+        height: '30px',
+        borderRadius: '50%',
+        backgroundColor: 'rgba(0, 0, 0,0.3)',
+        margin: '5px',
+    })
+     }
+        Swiper.prototype.cssStyle = function (dom, obj) {
+
+        }
+
+        // 一下为 功能性api
+        // 轮播播放函数
+        Swiper.prototype.player = function () {
+
+        }
+
+        // 轮播自动播放函数
+        Swiper.prototype.autoplay = function () {
+
+        }
+
+
+        Swiper.prototype.prenvetSwiperIten = function () {
+
+        }
+
+        // 实现下一张
+        Swiper.prototype.nextSwiperItem = function () {
+       var view=document.querySelector('view');
+       var swiperItem=document.querySelector('.view>.swiper-item');
+       this.index++
+       if(this.index>=this.degault.data.length){
+           this.index=0
+       }
+        }
+
+        // 渲染小圆点函数
+        Swiper.prototype.renderPoint = function () {
+
+        }
+
+
+
+        // 小圆点功能
+
+        Swiper.prototype.point = function () {
+
+        }
+
+
+        Swiper.prototype.$animate=function(dom,css,time,callback){
+            var start =parseFloat(getComputedStyle(dom,null)['margin'])
+        }
+    </script>
+</body>
+
+</html>

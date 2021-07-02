@@ -8,6 +8,8 @@
   <title>Document</title>
   <link rel="stylesheet" href="../css/common.css">
   <script src="../js/request.js"></script>
+<link rel="stylesheet" href="../css/carousel.css">
+<script src="../js/carousel.js"></script>
 </head>
 
 
@@ -40,10 +42,12 @@
   </div>
   <div class="denglu">
     <div class="denglu-1">
-      <input type="text" style="width:300px;height:40px" placeholder="请输入账号">
-      <input type="text" style="width:300px;height:40px" placeholder="请输入密码">
+      <input type="text" style="width:300px;height:40px" placeholder="请输入账号" id="username">
+      <input type="text" style="width:300px;height:40px" placeholder="请输入密码" id="password">
       <br>
-      <button style="width:300px;height:40px">登录</button>
+      <input type="checkbox" id="isCheck"><span>:记住密码</span>
+      <button style="width:300px;height:40px" id="login">登录</button>
+     
     </div>
   </div>
   <div class="zhuce">
@@ -54,20 +58,21 @@
       <button style="width:300px;height:40px">注册</button>
     </div>
   </div>
-  <div class="div1">
-    <div class="layui-carousel " id="text">
-      <div carousel-item>
-        <div><img src="../assets/images/a.jpg"></div>
-        <!-- <div><img src="../assets/images/b.jpg"></div>
-        <div><img src="../assets/images/c.jpg"></div>
-        <div><img src="../assets/images/d.jpg"></div>
-        <div><img src="../assets/images/e.jpg"></div> -->
-      </div>
-    </div>
-  </div>
 
 
-
+  <div class="carousel">
+    <ul>
+        <li><a href=""><img src="../assets/images/a.jpg" alt=""></a></li>
+        <li><a href=""><img src="../assets/images/b.jpg" alt=""></a></li>
+        <li><a href=""><img src="../assets/images/c.jpg" alt=""></a></li>
+        <li><a href=""><img src="../assets/images/d.jpg" alt=""></a></li>
+        <li><a href=""><img src="../assets/images/e.jpg" alt=""></a></li>
+    </ul>
+    <ol class="circle">
+    </ol>
+    <a href="javascript:;" class="arrow-l"></a>
+    <a href="javascript:;" class="arrow-r"></a>
+</div>
 
 
 
@@ -92,6 +97,66 @@
 
 
   <script>
+     var user = document.querySelector('#username');
+        var psd = document.querySelector('#password');
+        var isCheck = document.querySelector('#isCheck');
+        var login = document.querySelector('#login');
+
+        // 记住密码
+
+        // isCheck.onchange = function () {
+        //     console.log(isCheck.checked);
+        //     if (isCheck.checked) {
+        //         // 用户名和密码保存到 locaStorage中
+        //         var username = user.value;
+        //         var password = psd.value;
+        //         var userinfo = {
+        //             "username": username,
+        //             "password": password
+        //         }
+        //         userinfo = JSON.stringify(userinfo)
+        //         localStorage.setItem('userInfo', userinfo)
+        //     } else {
+        //         // 不需要保存
+        //     }
+        // }
+
+
+        // 初始化获取 记住密码的用户信息
+        getUserInfo()
+        function getUserInfo(params) {
+            // 从localStorage中获取应用信息
+            var userInfo = localStorage.getItem("userInfo");
+            if (userInfo) {
+                userInfo = JSON.parse(userInfo);
+                // 将获取的用户信息渲染到Input中
+                user.value = userInfo.username;
+                psd.value = userInfo.password;
+                isCheck.checked= true;
+            }else{
+                isCheck.checked = false;
+            }
+        }
+
+        user.oninput = function () {
+            var userInfo = localStorage.getItem('userInfo');
+            if (userInfo) {
+                userInfo = JSON.parse(userInfo);
+                if (userInfo.username !== user.value) {
+                    psd.value = '';
+                    isCheck.checked = false;
+                } else {
+                    psd.value = userInfo.password;
+                }
+            }
+
+
+        }
+
+
+        
+
+
 
     var lis = document.querySelectorAll(" #nav ul li");
     var denglu = document.querySelector('.denglu');
@@ -151,7 +216,7 @@
             html = html + `
              <div class="item">
               <div class="img">
-                <img src="${item.img_list_url}"alt="">
+                <img src='../assets/images/loading.jpg' data-src='${item.img_list_url}' alt="">
                 </div>
                 <div class="title">
                   <span>${item.title}</span>
@@ -162,8 +227,18 @@
               </div>
               </div>`
           }
+          // 懒加载
           list.innerHTML = html;
-        
+        var imgs=document.querySelectorAll('.img img');
+        // console.log(imgs);
+        window.addEventListener("scroll",function(){
+          imgs.forEach(function(item){
+            if(item.getBoundingClientRect().top<window.innerHeight){
+              var dd=item.getAttribute("data-src");
+              item.setAttribute("src",dd);
+            }
+          })
+        })
       })
     }
 
