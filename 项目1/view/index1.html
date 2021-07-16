@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <script src="../js/分类.js"></script>
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+    <div class="bigBox">
+        <!-- 头部开始 -->
+        <div class="head">
+            <div class="head1">
+                <div class="logo lf">
+                    <img src="../assets/images/logo.png" alt="">
+                    <ul class="navigationBar">
+                        <li class="lf underscore"><a href="../view/index.html"></a>首页</li>
+                        <li class="lf"><a href="../view/shopCar.html">购物车</a</li>
+                        <li class="lf"><a href="../view/index.html">退出登录</a></li>
+                    </ul>
+                </div>
+                <div class="searchFor lf">
+                    <input type="text" placeholder="请输入想要的商品"><button>搜索</button>
+                </div>
+                <!-- 头部结束 -->
+            </div>
+        </div>
+        <!-- 分类 -->
+        <div class="content1">
+            <ul class="dddd">
+                <li class="as">
+                    <div class="muna">
+                        <div>咖啡</div>
+                        <div>饮食</div>
+                        <div>正餐</div>
+                        <div>男装</div>
+                        <div>女装</div>
+                        <div>眼镜</div>
+                        <div>鞋靴</div>
+                    </div>
+                    <!-- 轮播图 -->
+                    <div class="lun">
+                        <div class="box" id="box">
+                            <div class="lbt">
+                                <img src="../assets/images/a.jpg" alt="">
+                                <img src="../assets/images/b.jpg" alt="">
+                                <img src="../assets/images/c.jpg" alt="">
+                                <img src="../assets/images/d.jpg" alt="">
+                                ` <img src="../assets/images/e.jpg" alt="">
+                            </div>
+                            <!-- <div class="btn" id="btn">
+                                <button></button>
+                                <button></button>
+                                <button></button>
+                                <button></button>
+                                <button></button>
+                            </div> -->
+                            <button id="last">
+                                <div class="last1" id="last2">
+                                </div>
+                                <div class="last1" id="last3">
+                                </div>
+                            </button>
+                            <button id="next">
+                                <div class="last1" id="last4">
+                                </div>
+                                <div class="last1" id="last5">
+                                </div>
+                            </button>
+                            <!-- <div id="div2">
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="list">
+
+                    </div>
+                    <img class="btm" src="../assets/images/footer.png" alt="">
+                </li>
+
+                <li class="login1">
+                    <!-- <section>
+                        <div class="safe_view">
+                            <div class="username">
+                                <label for="" class="iconfont icon-yonghu"></label>
+                                <input type="text" placeholder="用户名">
+                                <p>只能包含数字、字母、下划线、汉字6-12位</p>
+                            </div>
+                            <div class="password">
+                                <label for="" class="iconfont icon-icon-test"></label>
+                                <input type="password" name="" id="" placeholder="密码">
+                                <p>只能包含数字、字母、下划线6-12位</p>
+                            </div>
+                            <div class="login">
+                                <button>登录</button>
+                            </div>
+                        </div>
+                    </section> -->
+                </li>
+                <li class="registered1">
+                    <!-- <section>
+                        <div class="safe_view">
+                            <div class="username">
+                                <label for="" class="iconfont icon-yonghu"></label>
+                                <input type="text" placeholder="用户名">
+                                <p>只能包含数字、字母、下划线、汉字6-12位</p>
+                            </div>
+                            <div class="password">
+                                <label for="" class="iconfont icon-icon-test"></label>
+                                <input type="password" name="" id="" placeholder="密码">
+                                <p>只能包含数字、字母、下划线6-12位</p>
+                            </div>
+                            <div class="login">
+                                <button>注册</button>
+                            </div>
+                        </div>
+                    </section> -->
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="Top">回到顶部</div>
+</body>
+<script src="../js/typesof.js"></script>
+<script src="../js/request.js"></script>
+<script src="../js/as.js"></script>
+<script>
+    
+    sessionStorage.setItem()
+    localStorage.setItem()
+    var noLogin = document.querySelector(`${this.default.container} .after`);
+    var login = document.querySelector(`${this.default.container} .before`);
+    if (this.default.isLogin) {
+        // 登录了
+        login.style.display = 'block';
+        noLogin.style.display = 'none'
+    } else {
+        login.style.display = 'none';
+        noLogin.style.display = 'block'
+    }
+
+</script>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/xiangqing.css">
+    <script src="../js/request.js"></script>
+    
+</head>
+
+<body>
+    <div class="magnifier">
+        <div class="left">
+            <div class="samllBox">
+                <img src="../assets/images/c.jpg" alt="" class="samllImg">
+                <div class="occlude"></div>
+            </div>
+
+            <div class="Instance">
+
+            </div>
+        </div>
+
+        <div class="rigth">
+            <div class="information">
+                <h2>dfhasfghsdghfdshgh</h2>
+                <p>
+                    <span class="price">12</span>
+                    <span></span>
+                </p>
+                <button>加入购物车</button>
+            </div>
+            <img src="../assets/images/bg.jpg" alt="" class="bigImg">
+        </div>
+
+    </div>
+    <!-- 相关 -->
+</body>
+<script>
+    var locaId = localStorage.getItem("locaId")
+    function ajxa(url, fn) {
+        var hrx = new XMLHttpRequest()
+        hrx.open('get', `http://49.232.47.192:9527/api${url}`)
+        hrx.send();
+        hrx.onreadystatechange = function () {
+            if (hrx.status === 200 & hrx.readyState === 4) {
+                var fen = hrx.responseText;
+                fen = JSON.parse(fen)
+                fn(fen)
+            }
+        }
+    }
+    var information = document.querySelector(".information h2")
+    var informationP = document.querySelector(".information p")
+    var samllImg = document.querySelector('.samllImg')
+    var Instance = document.querySelector('.Instance')
+    var bigImg = document.querySelector('.bigImg')
+    var samllBox = document.querySelector('.samllBox')
+    var occlude = document.querySelector('.occlude')
+    var rigth = document.querySelector('.rigth')
+    ajxa(`/detail?goodId=${locaId}`, function (x) {
+        console.log(x);
+        information.innerHTML = x[0].title;
+        informationP.innerHTML = `
+        <span class="price">￥${x[0].price}</span>
+                  ${x[0].mack}
+        `
+        samllImg.src = x[0].img_url
+        bigImg.src = x[0].img_url
+        var imgs = x[0].imgs.slice(1, x[0].imgs.length - 1).split(",");
+        for (var j = 0; j < imgs.length; j++) {
+            var img = document.createElement('img');
+            if (j == 0) {
+                img.classList.add('imgthis')
+            }
+            img.src = imgs[j].slice(1, imgs[j].length - 1)
+            Instance.appendChild(img)
+        }
+        var img = Instance.children;
+        for (let n = 0; n < img.length; n++) {
+            img[n].onclick = function () {
+                for (var j = 0; j < img.length; j++) {
+                    img[j].classList.remove('imgthis')
+                }
+                this.classList.add('imgthis')
+                samllImg.src = this.src;
+                bigImg.src = this.src
+            }
+        }
+        samllBox.onmouseover = function () {
+            occlude.style.display = "block";
+            bigImg.style.display = "block";
+
+        }
+        samllBox.onmouseout = function () {
+            occlude.style.display = "none";
+            bigImg.style.display = "none";
+
+        }
+        samllBox.onmousemove = function (e) {
+
+            var x = e.pageX - samllBox.offsetLeft - occlude.offsetWidth / 2;
+            var y = e.pageY - samllBox.offsetTop - occlude.offsetHeight / 2;
+            var maxX = samllBox.offsetWidth - occlude.offsetWidth;
+            var maxY = samllBox.offsetHeight - occlude.offsetHeight;
+            if (x <= 0) {
+                x = 0
+            }
+            if (x >= maxX) {
+                x = maxX;
+            }
+            if (y <= 0) {
+                y = 0
+            }
+            if (y >= maxY) {
+                y = maxY;
+            }
+
+            occlude.style.left = x + 'px';
+            occlude.style.top = y + 'px';
+            var bigImgX = bigImg.offsetWidth - rigth.offsetWidth;
+            var bigImgY = bigImg.offsetHeight - rigth.offsetHeight;
+            bigImg.style.left = -(x * bigImgX / maxX) + "px";
+            bigImg.style.top = -(y * bigImgY / maxY) + "px";
+        }
+
+    })
+
+</script>
+
+</html>

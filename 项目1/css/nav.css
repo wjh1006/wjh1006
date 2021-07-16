@@ -1,0 +1,110 @@
+
+nav{
+    padding-top: 20px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 152px;
+    box-shadow: 0 2px 6px #999;
+}
+.nav-mid{
+    margin: 0 auto;
+    width: 1200px;
+    height: 100%;
+}
+.nav-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.nav-top img{
+    width: 188px;
+    height: 74px;
+}
+.nav-right{
+    display: flex;
+    width: 600px;
+    z-index: 99;
+}
+.nav-right,.forms-clearfix input,.nav-right button{
+    height: 40px;
+}
+.forms-clearfix input{
+    padding: 0 15px;
+    width: 400px;
+    border: 1px solid #dcdfe6;
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+}
+/* 焦点样式 */
+.forms-clearfix input:focus{
+    border-color: purple;
+}
+.forms-clearfix input::-webkit-input-placeholder{
+    color: #c0c4cc;
+}
+
+
+.nav-right button{
+    width: 89px;
+    border: 1px solid #dcdfe6;
+    background-color: #fff;
+    border-radius: 0 4px 4px 0;
+    font-size: 14px;
+    color: #606266;
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    cursor: pointer;
+}
+/* 鼠标移入 */
+.nav-right button:hover,
+.nav-right button:focus{
+    color: purple;
+    background-color: #f2e6f2;
+    border-color: #d9b3d9;
+    
+}
+.nav-right button:active{
+    border-color: #730073;
+}
+.con{
+    background-color: #fff;
+    box-shadow: 0 2px 6px #999;
+}
+#nav-content{
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+.nav-sub{
+  margin:0 auto;
+    padding: 15px 0;
+    width: 1200px;
+    height: 57px;
+}
+.nav-sub a{
+    text-decoration: none;
+    display: inline-block;
+    padding: 0 10px;
+    padding-bottom: 4px;
+    margin: 0 20px;
+    font-size: 16px;
+    color: #000000;
+    font-weight: bolder;
+    border-bottom: 2px solid #fff;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+.nav-sub a:hover{
+    color: purple;
+    border-color: purple;
+}
+.router-link-active{
+    color: purple;
+    border-color: purple;
+}
+#loadingstyle{
+    color: purple;
+    border-color: purple;
+}

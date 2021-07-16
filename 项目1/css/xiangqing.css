@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.magnifier{
+    display: flex;
+    justify-content: space-between;
+    width: 980px;
+    margin: 20px auto 0; 
+}
+.left{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 400px;
+    height: 500px;
+}
+.samllBox{
+    width: 400px;
+    height: 400px;
+    position: relative;
+    border: 1px solid #cacaca;
+}
+.samllImg{
+    width: 100%;
+    height: 100%;
+}
+.occlude{
+    width: 150px;
+    height: 150px;
+    background-color: red;
+    opacity: .5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    cursor: move;
+}
+.Instance{
+    text-align: center;
+    width: 100%;
+}
+.Instance img{
+    width: 60px;
+    height: 60px;
+    margin: 0 5px;
+    border: 1px solid #cacaca;
+}
+.Instance .imgthis{
+    border: 1px solid red;
+}
+.rigth{
+    width: 550px;
+    height: 550px;
+    border: 1px solid #cacaca; 
+    padding: 50px;
+    position: relative;
+    overflow: hidden;
+    
+}
+.information h2{
+    font-size: 20px;
+}
+.information p{
+    margin: 50px 0;
+}
+.information .price{
+    color: red; 
+    font-size: 18px;
+}
+.information button{
+    width: 200px;
+    height: 50px;
+    font-size: 23px;
+    background-color: red;
+    color: #fff;
+    border: none;
+}
+.bigImg{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 750px;
+    height: 750px;
+    display: none;
+}

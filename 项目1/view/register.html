@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <!-- <link rel="stylesheet" href="../assets/font_42wkbpkvrhh/iconfont.css"> -->
+
+    <script src="../js/request.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../componets/log/index.js"></script>
+    <script src="../componets/navBar/index.js"></script>
+</head>
+
+<body>
+    <div id="nav"></div>
+    <li class="registered1">
+        <section>
+            <div class="safe_view">
+                <div class="username">
+                    <label for="" class="iconfont icon-yonghu"></label>
+                    <input type="text" placeholder="用户名">
+                    <p>只能包含数字、字母、下划线、汉字6-12位</p>
+                </div>
+                <div class="password">
+                    <label for="" class="iconfont icon-icon-test"></label>
+                    <input type="password" name="" id="" placeholder="密码">
+                    <p>只能包含数字、字母、下划线6-12位</p>
+                </div>
+                <div class="login">
+                    <button>注册</button>
+                </div>
+            </div>
+        </section>
+    </li>
+    
+</body>
+<script>
+    createNav({
+        container: "#nav",
+        logoUrl: '../assets/images/logo.png',
+    })
+    var input = document.querySelectorAll(".safe_view input");
+    var btn = document.querySelector('.login button');
+    // 需求：点击input 让 p 标签隐藏
+    // 遍历input 标签
+    input.forEach(function(item,index){
+        // item 为 input 元素  index 执行次数
+        console.log(item,index);
+        item.onclick = function(){
+            // 获取 下一个兄弟元素
+            var p = item.nextElementSibling;
+            p.style.display = 'none'
+        }
+    })
+
+    btn.onclick = function(){
+        var userName = input[0].value;
+        var password = input[1].value;
+        console.log(userName,password);
+        var userReg =  /^[a-zA-Z0-9_\u4e00-\u9fa5]{6,12}$/;
+        var passwordrReg = /\w{6,12}/;
+        // 如果验证的用户名没有通过， 显示提示信息 结束语句
+        if(!userReg.test(userName)){
+            var p  = input[0].nextElementSibling;
+            p.style.display = 'block'
+            return
+        }
+        if(!passwordrReg.test(password)){
+            var p  = input[1].nextElementSibling;
+            p.style.display = 'block'
+            return
+        }
+        console.log('用户名和密码都通过了');
+        // console.log(api);
+        api.Register({
+            username:userName,
+            password:password
+        },function(data){
+            infoLog("注册接口响应数据",data)
+            if(data.code==1){
+                alert('注册成功');
+                location.href= '../view/login.html'                    
+            }else{
+                alert('注册失败')
+            }
+        })
+    }
+
+</script>
+</html>

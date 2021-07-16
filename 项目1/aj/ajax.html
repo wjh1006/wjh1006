@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <button>发送</button> -->
+    <div class="list">
+    </div>
+    <script>
+        // 1.创建一链接对象
+        var xhr = new XMLHttpRequest();
+        //使用xhr中的内容向服务器 发出请求  并接受响应 对响应做出处理
+        //2. 请求  
+        xhr.open("get", 'http://192.168.1.119:3000/test');
+        xhr.send();//向服务器发送请求
+        //3. 接受响应
+        xhr.onreadystatechange = function () {
+            // console.log(xhr);
+            // console.log(xhr.status); //200 状态码  表示 客户端与服务器端链接成功
+            // console.log(xhr.readyState);
+            //表示浏览器发送请求成功，可以获取浏览器想要的数据
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                //获取服务器响应的数据
+                // console.log(xhr.responseText);
+                var datt = xhr.responseText
+                var xc = JSON.parse(datt)
+                for (var i = 0; i < xc.length; i++) {
+                    var list = document.querySelector(".list")
+                    var fl = document.createElement("div");
+                    list.appendChild(fl);
+                    var h2 = document.createElement("h2")
+                    h2.innerHTML = `姓名: ${xc[i].name}`;
+                    fl.appendChild(h2);
+                    console.log(1);
+                }
+            }
+        }
+    </script>
+    <script>
+           var  xhr=new XMLHttpRequest();
+           xhr.open('get','533')
+           xhr.send();
+           xhr.onreadystatechange=function(){
+               if(xhr.status==200&&xhr.readyState==4){
+                   var prd=xhr.responseText
+                   var gq=JSON.parse(prd)
+        var list = document.querySelector(".list")
+        var h2 = document.createElement('h2')
+        h2.innerHTML = 'sb'
+        list.appendChild(h2)
+           }
+       }
+    </script>
+</body>
+
+</html>
+<!-- 
+    文档
+    url:'http://............'
+    method:post
+    params:
+    name:string
+    age:number
+
+    [
+    {name:'xx',age:xx,dec:xx}
+    ]
+ -->

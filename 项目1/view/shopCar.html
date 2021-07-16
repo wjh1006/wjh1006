@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物车页面</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <script src="../js/request.js"></script>
+    <style>
+        .list23 {
+            width: 1300px;
+            margin: 50px auto;
+        }
+
+        .top {
+            height: 50px;
+            line-height: 50px;
+        }
+
+        .top div {
+            display: inline-block;
+        }
+
+        .title {
+            width: 120px;
+        }
+
+        .product {
+            width: 460px;
+            margin-left: 260px;
+        }
+
+        .all {
+            width: 1300px;
+            height: 130px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            /* padding: 20px 0; */
+            margin-top: -2px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .all div {
+            display: inline-block;
+        }
+
+        .img img {
+            width: 130px;
+            height: 130px;
+        }
+
+        .info {
+            width: 260px;
+            position: absolute;
+            top: 36px;
+            left: 230px;
+        }
+
+        .info p {
+            font-size: 14px;
+            color: #3c3c3c;
+            margin: 5px 0 0 0;
+        }
+
+        .price {
+            position: absolute;
+            top: 40px;
+            left: 718px;
+        }
+
+        .price span {
+            color: #f40;
+            font-weight: 700;
+        }
+
+        .count {
+            position: absolute;
+            top: 58px;
+            left: 828px;
+            width: 120px;
+        }
+        .count .add {
+            background-color: #f0f0f0;
+            border: 1px solid #e5e5e5;
+            height: 21px;
+            display: block;
+            width: 18px;
+            position: relative;
+            top: 0;
+            left: 0;
+            text-align: center;
+            line-height: 21px;
+            float: left;
+        }
+
+        .sub {
+            background-color: #f0f0f0;
+            border: 1px solid #e5e5e5;
+            height: 21px;
+            display: block;
+            width: 18px;
+            position: relative;
+            top: 0;
+            left: 0;
+            text-align: center;
+            line-height: 21px;
+            float: left;
+        }
+        .count input {
+            /* width: 46px; */
+            height: 20px;
+            outline: 0;
+            border: 0;
+            margin-left: 1px;
+            line-height: 20px;
+            text-align: center;
+            /* z-index: 10; */
+            width: 50px;
+            float: left;
+            margin: 1px 0 0 0;
+            border: 1px solid #3c3c3c;
+        }
+
+        .amount {
+            position: absolute;
+            top: 58px;
+            left: 965px;
+        }
+
+        .amount span {
+            color: #000;
+            font-weight: 700;
+        }
+
+        .operates {
+            position: absolute;
+            top: 58px;
+            left: 1097px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 头部 -->
+    <div class="header clearfix">
+        <div class="headers">
+            <div class="logo">
+                <img src="../imgs/logo.png" alt="">
+            </div>
+            <div class="headersRight">
+                <input type="text" placeholder="请输入想要的商品" value="">
+                <a href="./html/搜索.html"><span>搜索</span></a>
+            </div>
+            <div class="headersbuttom clearfix">
+                <ul class="show">
+                    <li><a href="../index.html" id="frist">首页</a></li>
+                    <li><a href="./登录.html" id='frist1'>登录</a></li>
+                    <li><a href="./注册.html">注册</a></li>
+                </ul>
+                <ul class="vanish">
+                    <li><a href="../index.html" id="frist">首页</a></li>
+                    <li><a href="#" id='frist1' class="activ">购物车</a></li>
+                    <li><a href="./登录.html">退出登录</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 渲染数据 -->
+    <div class="list23">
+        <div class="top">
+            <div class="title product">商品信息</div>
+            <div class="title">单价</div>
+            <div class="title">数量</div>
+            <div class="title">金额</div>
+            <div class="title operate">操作</div>
+        </div>
+    </div>
+</body>
+<script>
+    // 显示和隐藏
+    var uls = document.querySelectorAll('.headersbuttom ul');
+    var res = localStorage.getItem('token');
+    if (res) {
+        uls[0].style.display = 'none';
+        uls[1].style.display = 'block';
+        uls[1].addEventListener('click', function () {
+            localStorage.removeItem('token');
+            location.href = './html/登录.html';
+        })
+    } else {
+        uls[0].style.display = 'block';
+        uls[1].style.display = 'none';
+    }
+    // 渲染数据
+    var list23 = document.querySelector('.list23');
+    var token = localStorage.getItem('token');
+    shoppingCart();
+    function shoppingCart() {
+        REQUEST.get('/shopList', {
+            params: {
+                token: token
+            }
+        }, function (data) {
+            var html = '';
+            for (var i = 0; i < data.length; i++) {
+                html += `
+                <div class = "all">
+                <div class = "img">
+                <img src = "${data[i].img_list_url}" alt="">
+                </div>
+                <div class = "info">
+                <p class="info1">${data[i].type_two}<p>
+                <p class="info2">${data[i].title}<p>
+                <p class="info3">${data[i].supplier}<p>
+                </div>
+                <div class= "price">
+                    ￥<span>${data[i].price}</span>
+                </div>
+                <div class="count">
+                <span class="sub" data-id = '${data[i].Id}'>-</span>
+              
+                <input type="text" value="${data[i].count}">
+               
+                <span class="add">+</span>
+                </div>
+                <div class="amount">
+                ￥<span>${data[i].price * data[i].count}</span>
+                </div>
+                <div class="operates">
+                 <span class="delete">删除</span>
+                </div>
+                <div>
+                `
+            }
+            list23.innerHTML += html;
+            deleteData();
+            reduce();
+            addTo();
+        })
+    }
+    // 删除
+    function deleteData() {
+        var operates = document.querySelectorAll(".operates");
+        operates.forEach(function (item) {
+            item.onclick = function () {
+                var id = item.getAttribute("data-id");
+                var flag = confirm("确定要删除吗？");
+                if (flag) {
+                    REQUEST.get("/del", { params: { token: token, goodId: id, } }, function (data) {
+                        if (data.code == 1) {
+                            item.parentElement.style.display = "none";
+                        }
+                    })
+                }
+            }
+        })
+    }
+    // 点击减少商品
+    function reduce() {
+        var all = document.querySelectorAll('.all');
+        var sub = document.querySelectorAll('.sub');
+        var input = document.querySelectorAll('.count>input');
+        var amount = document.querySelectorAll('.amount>span');
+        var price = document.querySelectorAll('.price>span');
+        for (let i = 0; i < sub.length; i++) {
+            sub[i].addEventListener("click", function () {
+                var em = input[i].value;
+                REQUEST.get("/remove", {
+                    params: {
+                        token: token,
+                        goodId: input[i].id
+                    }
+                },
+                    function (data) {
+                        if (data.code == 1) {
+                            alert('删除数量成功');
+                            input[i].value = parseInt(em) - 1;
+                            if (parseInt(em[i].innerHTML) == 0) {
+                                all[i].remove();
+                            } else {
+                                amount[i].innerText = price[i].innerText * input[i].value;
+                            }
+
+                        } else if (data.code == 2) {
+                            alert("减少失败");
+                        } else if (data.code == 0) {
+                            alert("未登录")
+                        }
+                    })
+            })
+        }
+    }
+    // 点击增加商品
+    function addTo() {
+        var input = document.querySelectorAll('.count>input');
+        var add = document.querySelectorAll(".add");
+        var amount = document.querySelectorAll('.amount>span');
+        var price = document.querySelectorAll('.price>span');
+        for (let i = 0; i < add.length; i++) {
+            add[i].addEventListener("click", function () {
+                var em = input[i].value;
+                REQUEST.get("/add", {
+                    params: {
+                        token: token,
+                        goodId: input[i].id
+                    }
+                },
+                    function (data) {
+                        if (data.code == 1) {
+                            alert("添加成功");
+                            input[i].value = parseInt(em) + 1;
+                            amount[i].innerText = price[i].innerText * parseInt(input[i].value);
+                        } else if (data.code == 2) {
+                            alert("添加失败");
+                        } else if (data.code == 0) {
+                            alert("未登录")
+                        }
+                    })
+            })
+        }
+    }
+
+</script>
+
+</html>

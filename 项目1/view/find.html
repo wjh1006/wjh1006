@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../view/search.html">
+    <script src="../js/api.js"></script>
+    <script src="../js/as.js"></script>
+    <script src="../js/request.js"></script>
+    <script src="../view/classification.html"></script>
+    <link rel="stylesheet" href="../css/common.css">
+
+</head>
+
+<body>
+    <!-- <div class="searchFor lf">
+        <input type="text" placeholder="请输入想要的商品"><button>搜索</button>
+    </div> -->
+    <div class="bigBox">
+        <!-- 头部开始 -->
+        <div class="head">
+            <div class="head1">
+                <div class="logo lf">
+                    <img src="../assets/images/logo.png" alt="">
+                    <ul class="navigationBar">
+                        <li class="lf underscore">首页</li>
+                        <li class="lf">登录</li>
+                        <li class="lf">注册</li>
+                    </ul>
+                </div>
+                <a href="../view/find.html"></a>
+                <div class="searchFor lf">
+                    <input type="text" placeholder="请输入想要的商品"><button>搜索</button>
+                </div>
+                <!-- 头部结束 -->
+            </div>
+        </div>
+
+        <div class="selected">
+            <ul class="selected1">
+
+            </ul>
+        </div>
+        <script>
+
+
+            var words = decodeURI(location.search.split("=")[1])
+            // console.log(location.search);
+            REQUEST.get("/search", {
+                params: {
+                    word: words,
+                }
+            }, function (words) {
+                console.log(words);
+                var selected = document.querySelector(".selected")
+                var selected1 = document.querySelector(".selected .selected1")
+                for (var i = 0; i < words.length; i++) {
+                    selected1.innerHTML += `
+        <li>
+            <img src="${words[i].img_list_url}" alt="">
+            <p>${words[i].title}</p>
+            <span class="ss1">￥${words[i].price}</span>
+            <span class="ss2">${words[i].mack}</span>
+        </li>
+        `
+                }
+            })
+
+
+
+
+            var ipt = document.querySelector(".searchFor input")
+            var btn = document.querySelector(".searchFor button")
+            btn.onclick = function () {
+                var words = ipt.value
+                location.href = `../view/find.html?xxx=${words}`
+            }
+
+
+        </script>
+</body>
+
+</html>

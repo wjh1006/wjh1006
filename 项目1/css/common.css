@@ -1,0 +1,372 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  user-select: none;
+}
+li {
+  list-style: none;
+}
+input,
+button {
+  vertical-align: middle;
+  outline: none;
+}
+a {
+  text-decoration: none;
+}
+.lf {
+  float: left;
+}
+.rg {
+  float: right;
+}
+/* 头部部分 */
+.head {
+  width: 100%;
+  height: 150px;
+  box-shadow: 0px 6px 12px #999999;
+}
+.head1 {
+  width: 980px;
+  height: 100%;
+  margin: 0 auto;
+}
+.head1 .logo {
+  width: 320px;
+  height: 150px;
+}
+.head1 .logo img {
+  width: 300px;
+  height: 70px;
+  margin-top: 5px;
+  overflow: hidden;
+}
+.navigationBar {
+  width: 100%;
+  height: 73px;
+  line-height: 73px;
+  display: flex;
+  left: 0;
+  top: 0;
+}
+
+.navigationBar li {
+  width: 90px;
+  font-weight: bold;
+  text-align: center;
+}
+.searchFor {
+  width: 660px;
+  height: 150px;
+  line-height: 150px;
+  text-align: right;
+}
+.searchFor input {
+  width: 370px;
+  height: 43px;
+  padding-left: 20px;
+  border: 1px solid rgb(211, 211, 211);
+  border-radius: 5px 0 0 5px;
+}
+.searchFor button {
+  width: 100px;
+  height: 43px;
+  border: 1px solid rgb(211, 211, 211);
+  border-left: none;
+  border-radius: 0 5px 5px 0;
+  color: #868686;
+  font-size: 18px;
+}
+.content1 {
+  position: relative;
+  width: 980px;
+  margin: 0 auto;
+}
+.content1 .ddd {
+  position: absolute;
+  left: 0;
+  top: 0px;
+  width: 100%;
+}
+.content1 .dddd li {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 980px;
+  display: none;
+}
+.content1 .dddd .as {
+  display: block;
+}
+.muna {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+.muna div {
+  display: inline-block;
+  width: 120px;
+  height: 40px;
+  font-size: 20px;
+  color: #999;
+  font-weight: bold;
+  border-radius: 20px;
+  text-align: center;
+  line-height: 40px;
+}
+.muna div:hover {
+  background-color: red;
+  color: #fff;
+}
+/* 轮播图 */
+.lun {
+  width: 100%;
+  height: 300px;
+  margin-top: 30px;
+}
+.box {
+  position: relative;
+  width: 960px;
+  height: 300px;
+  overflow: hidden;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+.box img {
+  width: 980px;
+  height: 300px;
+}
+
+#last,
+#next {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  position: absolute;
+  transition: all 0.5s;
+  top: 110px;
+  text-align: center;
+  line-height: 50px;
+  font-size: 26px;
+  border-style: none;
+  outline-style: none;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+}
+
+#last {
+  left: 10px;
+}
+
+#next {
+  right: 10px;
+}
+
+#last2 {
+  transform-origin: 0 100%;
+  transform: rotateZ(30deg);
+  margin-left: 11px;
+}
+
+.last1 {
+  width: 4px;
+  height: 20px;
+  background-color: white;
+  margin-left: 31px;
+  transition: all 0.3s;
+}
+
+#last:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+#next:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+#last:hover #last2 {
+  transform: rotateZ(45deg);
+  background-color: black;
+}
+
+#last3 {
+  transform-origin: 0 0;
+  transform: rotateZ(-30deg);
+  margin-left: 11px;
+}
+
+#last:hover #last3 {
+  transform: rotateZ(-45deg);
+  background-color: black;
+}
+
+#last4 {
+  transform-origin: 100% 100%;
+  transform: rotateZ(-30deg);
+}
+
+#next:hover #last4 {
+  transform: rotateZ(-45deg);
+  background-color: black;
+}
+
+#last5 {
+  transform-origin: 100% 0;
+  transform: rotateZ(30deg);
+}
+
+#next:hover #last5 {
+  transform: rotateZ(45deg);
+  background-color: black;
+}
+
+.btn {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.btn button {
+  outline-style: none;
+  border-style: none;
+  background-color: grey;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 0;
+}
+.lbt {
+  position: absolute;
+  width: 5000px;
+  left: 0;
+  transition: all 2s;
+}
+
+/* 商品 */
+.list {
+  width: 100%;
+  margin: 50px auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.item {
+  width: 155px;
+  height: 250px;
+  text-align: center;
+  border: 1px solid rgb(224, 224, 224);
+  margin: 5px 0;
+  font-size: 12px;
+  border-radius: 10px;
+}
+.item:hover{
+  transform:scale(1.1);
+}
+.item img {
+  width: 150px;
+  height: 150px;
+}
+.item p:nth-of-type(1) {
+  display: inline-block;
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin: 20px 0;
+}
+.item p:nth-of-type(2) span {
+}
+.btm {
+  width: 100%;
+  height: 300px;
+}
+/* 登录部分 */
+
+.login1,
+.registered1 {
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 200px;
+}
+.dddd .login input,
+.dddd .registered input {
+  width: 400px;
+  height: 40px;
+  margin-top: 30px;
+  border-radius: 8px;
+  outline: invert;
+  padding-left: 30px;
+  border-color: violet;
+}
+.dddd .login button,
+.dddd .registered button {
+  width: 400px;
+  height: 40px;
+  margin-top: 30px;
+  border-radius: 8px;
+  background-color: yellowgreen;
+  color: #fff;
+}
+.Top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 90px;
+  height: 90px;
+  color: white;
+  text-align: center;
+  background-color:blue;
+  line-height: 90px;
+}
+.Top:active {
+  color: #fff;
+  background-color: red;
+}
+
+/* 搜索 */
+
+.selected {
+  width: 1100px;
+  margin: 0 auto;
+}
+.selected .selected1 {
+  display: block;
+  width: 1100px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.selected1 li {
+  width: 200px;
+  height: 300px;
+  border: 1px solid rgb(209, 209, 209);
+  margin: 10px 0;
+  overflow: hidden;
+}
+.selected1 li img {
+  width: 100%;
+  height: 200px;
+}
+.selected1 li p {
+  display: inline-block;
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin: 10px;
+}
+.selected1 li .ss1 {
+  text-align: left;
+  width: 100px;
+  color: red;
+  padding: 0 40px 0 10px;
+}

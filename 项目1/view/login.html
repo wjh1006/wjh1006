@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <script src="../js/request.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../componets/log/index.js"></script>
+    <script src="../componets/navBar/index.js"></script>
+    <script src="../componets/loading/index.js"></script>
+</head>
+
+<body>
+    <div id="nav"></div>
+
+    <li class="login1">
+        <section>
+            <div class="safe_view">
+                <div class="username">
+                    <label for="" class="iconfont icon-yonghu"></label>
+                    <input type="text" placeholder="用户名">
+                    <p>只能包含数字、字母、下划线、汉字6-12位</p>
+                </div>
+                <div class="password">
+                    <label for="" class="iconfont icon-icon-test"></label>
+                    <input type="password" name="" id="" placeholder="密码">
+                    <p>只能包含数字、字母、下划线6-12位</p>
+                </div>
+                <div class="login">
+                    <button>登录</button>
+                </div>
+            </div>
+        </section>
+    </li>
+    <script>
+
+        // 初始化导航
+        createNav({
+            logoUrl: "../assets/images/logo.png",   // logo 的地址 
+            container: "#nav",
+            onSearch: function () {
+                // 执行搜索
+            },
+        })
+
+
+        // 1：html接哦古
+        // 2：css 样式
+        // js 交互
+
+        // 1 点击 input 相邻的 p 隐藏
+        // 1.2 获取 input
+        var input = document.querySelectorAll('.safe_view input');
+        // 1.3 给每一个input 绑定事件
+        input.forEach(function (item, index) {
+            item.onclick = function () {
+                // 1.4 让p 隐藏
+                // 1.41 根据当前input 找到 p
+                var p = item.nextElementSibling;
+                // 1.42 让p隐藏
+                p.style.display = 'none'
+            }
+        })
+        // 测试
+
+        var username;
+        var userReg = /^[a-zA-Z0-9_\u4e00-\u9fa5]{6,12}$/;
+        // 2：实时验证表单。验证通过；提示 验证通过，绿色字体 没通过提示 xxx 红色字体
+        // 2.1 找到第一个input 并绑定input 是啊金
+        input[0].oninput = function (e) {
+            // 2.2 获取input 的value 
+            // 2.3 正则验证
+            if (userReg.test(e.target.value)) {
+                // 2.4 验证通过
+                username = e.target.value;
+                var p = e.target.nextElementSibling;
+                p.innerHTML = '验证通过';
+                p.style.display = 'block';
+                p.style.color = 'green';
+                // 记录 验证是否通过
+                input[0].isPass = true;
+
+            } else {
+                // 2.5 验证没通过
+                var p = e.target.nextElementSibling;
+                p.innerHTML = '只能包含数字、字母、下划线、汉字6-12位';
+                p.style.display = 'block';
+                p.style.color = 'red';
+                input[0].isPass = false;
+
+            }
+
+        }
+        var password;
+        var passwordrReg = /\w{6,12}/;
+        input[1].oninput = function (e) {
+            // 2.2 获取input 的value 
+            // 2.3 正则验证
+            if (passwordrReg.test(e.target.value)) {
+                password = e.target.value;
+                // 2.4 验证通过
+                var p = e.target.nextElementSibling;
+                p.innerHTML = '验证通过';
+                p.style.display = 'block';
+                p.style.color = 'green';
+                input[1].isPass = true;
+            } else {
+                // 2.5 验证没通过
+                var p = e.target.nextElementSibling;
+                p.innerHTML = '只能包含数字、字母、下划线、汉字6-12位';
+                p.style.display = 'block';
+                p.style.color = 'red';
+                input[1].isPass = false;
+            }
+        }
+
+        // 3: 点击登录按钮
+        var btn = document.querySelector('.login button');
+        btn.onclick = function () {
+            var pass = input[0].isPass && input[1].isPass;
+            if (!pass) {
+                // 数据验证没通过
+                return
+            }
+            // 数据验证通过后
+            // 3.1 获取验证通过 username passwor
+            console.log(username, password);
+            var option = {
+                username: username,
+                password: password
+            }
+            var load = createLoading().show();
+            // 3.2  发送登录请求
+            api.Login(option, function (data) {
+                infoLog('登录成功', data)
+                // 3.3 登录成功后；将服务器返回的token 保存到 Locastorage中
+                if (data.code === 1) {
+                    // 提示登录成功
+                    console.log(111);
+                    var token = data.token;
+                    localStorage.setItem('token', token)
+                    setTimeout(() => {
+                        load.hide()
+                        // 3.4 然后1s后跳转到首页
+                        location.href = './index1.html'
+                    }, 1000);
+                }
+            })
+        }
+        
+
+
+
+    </script>
+</body>
+
+</html>
